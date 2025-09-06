@@ -1,0 +1,23 @@
+{
+  "name": "myinvestor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "npm start -w server",
+    "start:client": "npm start -w client",
+    "dev": "concurrently -n SERVER,CLIENT -c green,blue \"npm run start -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "lint": "npm  run lint -w client"
+  },
+  "workspaces": [
+    "packages/server",
+    "packages/client"
+  ],
+  "keywords": [],
+  "author": "Víctor Rico",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
