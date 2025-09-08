@@ -62,7 +62,7 @@ const columns: Column<Fund>[] = [
     id: "performance-ytd",
     header: new Date().getFullYear().toString(),
     sortType: "date",
-    accessor: (row) => percent({ value: row.profitability.YTD }),
+    accessor: (row) => percent(row.profitability.YTD),
     value: (row) => row.profitability.YTD,
   },
   {
