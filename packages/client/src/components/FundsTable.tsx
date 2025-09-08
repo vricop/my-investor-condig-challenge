@@ -5,6 +5,7 @@ import { Table } from "./Table/Table";
 import { useState } from "react";
 import { Fund } from "../../../server/server/data/funds";
 import { classNames } from "@/utils/classNames";
+import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react";
 
 type SortType = "string" | "number" | "date";
 type SortDir = "asc" | "desc";
@@ -135,17 +136,15 @@ export default function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
                 {...getHelper(column.id === "name", "ISIN")}
               >
                 {column.header}{" "}
-                <span className="min-w-[1ch]">
-                  {sort?.id === column.id ? (
-                    sort.dir === "asc" ? (
-                      <>&uarr;</>
-                    ) : (
-                      <>&darr;</>
-                    )
+                {sort?.id === column.id ? (
+                  sort.dir === "asc" ? (
+                    <ArrowUp size="1em" />
                   ) : (
-                    <>&#8597;</>
-                  )}
-                </span>
+                    <ArrowDown className="text-inherit" size="1em" />
+                  )
+                ) : (
+                  <ArrowDownUp className="text-slate-500" size="1em" />
+                )}
               </Table.Heading>
             ))}
           </Table.Row>
