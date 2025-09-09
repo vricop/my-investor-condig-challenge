@@ -27,8 +27,9 @@ export function Pagination({
         <Link
           href={`${basePath}?page=${prevPage}`}
           aria-label="Previous page"
-          className="min-w-9 h-9 px-2 inline-flex items-center justify-center
-          text-slate-600 hover:bg-slate-50 outline-none focus:bg-slate-200"
+          className="min-w-9 h-9 px-2 grid
+          place-content-center text-slate-600
+          hover:bg-slate-50 outline-none focus:bg-slate-200"
         >
           <ChevronLeft />
         </Link>
