@@ -15,7 +15,7 @@ export function TableRow({
     <tr
       {...props}
       className={classNames(
-        "align-top [&>*+*]:pl-8 [&>*]:pt-4 [&>:where(th)]:pb-4",
+        "align-top *:pr-8 *:pt-4 [&>:where(th)]:pb-4",
         align && alignment[align],
         className,
       )}

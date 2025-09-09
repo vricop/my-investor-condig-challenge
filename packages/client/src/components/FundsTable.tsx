@@ -8,7 +8,7 @@ import { classNames } from "@/utils/classNames";
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react";
 
 type SortType = "string" | "number" | "date";
-type SortDir = "asc" | "desc";
+type SortDir = "ascending" | "descending";
 
 type SortState = {
   id: string;
@@ -92,17 +92,15 @@ const columns: Column<Fund>[] = [
 export default function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
   const [sort, setSort] = useState<SortState>(null);
 
-  console.log(sort);
-
   function handleSorting(id: string) {
     // 1) ASC
     if (sort?.id !== id) {
-      setSort({ id, dir: "asc" });
+      setSort({ id, dir: "ascending" });
       return;
     }
     // 2) DESC
-    if (sort.dir === "asc") {
-      setSort({ id, dir: "desc" });
+    if (sort.dir === "ascending") {
+      setSort({ id, dir: "descending" });
       return;
     }
     // 3) Remove sorting
@@ -120,33 +118,31 @@ export default function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
         <Table.Header>
           <Table.Row id="header-info" className="[&#header-info>*]:py-0">
             <Table.Heading colSpan={5} />
-            <Table.Heading
-              align="start"
-              colSpan={4}
-              className="font-normal text-sm"
-            >
+            <Table.Heading colSpan={4} className="font-normal text-sm">
               Rentabilidad anualizada (%)
             </Table.Heading>
           </Table.Row>
-          <Table.Row align="start">
+          <Table.Row>
             {columns.map((column, i) => (
               <Table.Heading
+                sort={sort?.dir}
                 onClick={() => handleSorting(column.id)}
                 key={i}
                 {...getHelper(column.id === "name", "ISIN")}
               >
                 {column.header}{" "}
                 {sort?.id === column.id ? (
-                  sort.dir === "asc" ? (
-                    <ArrowUp size="1em" />
+                  sort.dir === "ascending" ? (
+                    <ArrowUp size="1.25em" />
                   ) : (
-                    <ArrowDown className="text-inherit" size="1em" />
+                    <ArrowDown className="text-inherit" size="1.25em" />
                   )
                 ) : (
-                  <ArrowDownUp className="text-slate-500" size="1em" />
+                  <ArrowDownUp className="text-slate-400" size="1.25em" />
                 )}
               </Table.Heading>
             ))}
+            <Table.Heading />
           </Table.Row>
         </Table.Header>
         <Table.Body>
