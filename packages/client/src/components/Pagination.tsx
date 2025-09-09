@@ -67,15 +67,15 @@ export function Pagination(query: PaginationProps) {
   const prevPage = ((page - 2 + totalPages) % totalPages) + 1;
   const nextPage = (page % totalPages) + 1;
 
-  const shell = `
+  const nav = `
     inline-flex divide-x divide-slate-200 overflow-hidden rounded-md border
-    border-slate-200`;
+    border-slate-200 mt-6 tabular-nums`;
 
-  const edge = `
+  const edges = `
     min-w-9 h-9 px-2 grid place-content-center text-slate-600 hover:bg-slate-50
     outline-none focus:bg-slate-200`;
 
-  const item = `
+  const items = `
     min-w-9 h-9 px-3 grid place-content-center justify-center text-sm
     outline-none focus:bg-slate-200 aria-[current=page]:bg-slate-100
     aria-[current=page]:font-medium aria-[current=page]:text-slate-900`;
@@ -86,27 +86,25 @@ export function Pagination(query: PaginationProps) {
   });
 
   return (
-    <nav aria-label="Pagination" className="inline-flex mt-6 tabular-nums">
-      <div className={shell}>
-        <Link href={href(prevPage)} aria-label="Previous page" className={edge}>
-          <ChevronLeft />
-        </Link>
+    <nav aria-label="Pagination" className={nav}>
+      <Link href={href(prevPage)} aria-label="Previous page" className={edges}>
+        <ChevronLeft />
+      </Link>
 
-        {pages.map((p) => (
-          <Link
-            key={p}
-            href={href(p)}
-            aria-current={p === page ? "page" : undefined}
-            className={item}
-          >
-            {p}
-          </Link>
-        ))}
-
-        <Link href={href(nextPage)} aria-label="Next page" className={edge}>
-          <ChevronRight />
+      {pages.map((p) => (
+        <Link
+          key={p}
+          href={href(p)}
+          aria-current={p === page ? "page" : undefined}
+          className={items}
+        >
+          {p}
         </Link>
-      </div>
+      ))}
+
+      <Link href={href(nextPage)} aria-label="Next page" className={edges}>
+        <ChevronRight />
+      </Link>
     </nav>
   );
 }

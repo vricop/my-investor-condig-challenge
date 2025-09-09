@@ -18,7 +18,6 @@ type Column<T> = {
   id: string;
   header: React.ReactNode;
   description?: string;
-  isSortable?: boolean;
   value?: (row: T) => string | number;
   type?: SortType;
   accessor?: (row: T) => React.ReactNode;
@@ -120,7 +119,7 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
           {columns.map((column) => (
             <Table.Heading
               key={column.id}
-              sortable={column.isSortable !== false}
+              sortable={true}
               sortActive={sort?.id === column.id}
               sortDir={sort?.dir}
               onClick={() => handleSorting(column.id)}
