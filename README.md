@@ -6,6 +6,8 @@ implementation, with sorting, pagination, and keyboard-friendly dropdown menus.
 
 ---
 
+![Screenshot 1](screenshot-1.png)
+
 ## ✨ Highlights
 
 ### 🔼 **Sortable column headers**
