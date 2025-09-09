@@ -8,7 +8,7 @@ import { TableCell } from "./TableCell";
 export type TableProps = React.ComponentPropsWithoutRef<"table">;
 
 /**
- * A simple `Table` compound component with some predifined styling layout &
+ * A simple `Table` compound component with some predefined styling layout &
  * props
  */
 export function Table({ children, className, ...props }: TableProps) {
