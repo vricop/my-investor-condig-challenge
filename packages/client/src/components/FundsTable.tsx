@@ -107,9 +107,21 @@ export default function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
     setSort(null);
   }
 
-  /** Set `helperText` prop conditionally  */
-  function getHelper(cond: boolean, textHelper: string) {
-    return cond && { textHelper };
+  type SortParams = {
+    isEnabled?: boolean;
+    dir?: SortDir;
+  };
+
+  function SortIcon({ isEnabled, dir }: SortParams) {
+    if (!isEnabled) {
+      return <ArrowDownUp className="text-slate-400" size="1.25em" />;
+    }
+
+    return dir === "ascending" ? (
+      <ArrowUp size="1.25em" />
+    ) : (
+      <ArrowDown className="text-inherit" size="1.25em" />
+    );
   }
 
   return (
@@ -128,18 +140,10 @@ export default function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
                 sort={sort?.dir}
                 onClick={() => handleSorting(column.id)}
                 key={i}
-                {...getHelper(column.id === "name", "ISIN")}
+                {...(column.id === "name" && { textHelper: "ISIN" })}
               >
                 {column.header}{" "}
-                {sort?.id === column.id ? (
-                  sort.dir === "ascending" ? (
-                    <ArrowUp size="1.25em" />
-                  ) : (
-                    <ArrowDown className="text-inherit" size="1.25em" />
-                  )
-                ) : (
-                  <ArrowDownUp className="text-slate-400" size="1.25em" />
-                )}
+                <SortIcon isEnabled={sort?.id === column.id} dir={sort?.dir} />
               </Table.Heading>
             ))}
             <Table.Heading />
@@ -153,12 +157,12 @@ export default function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
                   key={column.id}
                   children={column.accessor?.(row)}
                   className={classNames(
-                    column.id === "name"
-                      ? "text-blue-700 font-semibold"
-                      : "text-slate-700",
+                    column.id === "name" && "text-blue-700 font-semibold",
+                    column.id !== "name" && "text-slate-700",
                   )}
                 />
               ))}
+              <Table.Cell></Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
