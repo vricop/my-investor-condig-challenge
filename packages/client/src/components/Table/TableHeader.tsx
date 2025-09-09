@@ -18,7 +18,8 @@ export function TableHeader({
   return (
     <thead
       className={classNames(
-        isSticky && "sticky top-0 border-b border-slate-300",
+        isSticky &&
+          "sticky top-0 shadow-[inset_0_-1px_0_0_theme(colors.slate.300)]",
         "bg-white",
         align && alignment[align],
         className,
