@@ -19,6 +19,10 @@ export default async function Home({ searchParams }: HomeParams) {
   return (
     <Container>
       <FundsTable data={funds.data} />
+      <Pagination
+        totalPages={funds.pagination.totalPages}
+        page={funds.pagination.page}
+      />
     </Container>
   );
 }
