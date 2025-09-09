@@ -5,7 +5,7 @@ import { Table } from "./Table/Table";
 import { useState } from "react";
 import { Fund } from "../../../server/server/data/funds";
 import { classNames } from "@/utils/classNames";
-import { SortDir } from "./types";
+import { Column, SortState } from "../../types";
 
 type SortType = "string" | "number" | "date";
 
