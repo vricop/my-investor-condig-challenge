@@ -7,6 +7,7 @@ import { Fund } from "../../../server/server/data/funds";
 import { classNames } from "@/utils/classNames";
 import { Column, SortState } from "../../types";
 import { sorter } from "@/utils/sorter";
+import { DropdownMenu } from "./DropdownMenu";
 
 const columns: Column<Fund>[] = [
   {
@@ -134,6 +135,9 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
               </Table.Cell>
             ))}
             <Table.Cell />
+            <Table.Cell>
+              <DropdownMenu />
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
