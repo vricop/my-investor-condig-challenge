@@ -18,7 +18,7 @@ export type GetFundsResponse = {
 
 export async function getFunds({
   page = 1,
-  limit = 20,
+  limit = 8,
 }: GetFundsParams = {}): Promise<GetFundsResponse> {
   const searchParams = new URLSearchParams({
     page: String(page),
