@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import { Container } from "@/components/Container";
 import { FundsTable } from "@/components/FundsTable";
 import { Pagination } from "@/components/Pagination";
 import { getFunds } from "@/lib/api/funds";
