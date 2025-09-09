@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📊 Funds Table Challenge
 
-## Getting Started
+This project is my submission for the coding challenge at My Investor.
+It demonstrates a responsive, accessible, and user-friendly data table
+implementation, with sorting, pagination, and keyboard-friendly dropdown menus.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Highlights
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔼 **Sortable column headers**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Three states: **unsorted → ascending → descending**.
+- Icons and colors update to reflect the current state.
+- Large clickable area (not just the icon) improves usability.
+- Focus indicators ensure keyboard accessibility.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🎛 **Dropdown menus**
 
-## Learn More
+- Fully keyboard accessible.
+- Options inside each dropdown are reachable via keyboard navigation.
 
-To learn more about Next.js, take a look at the following resources:
+### 📄 **Pagination**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Accessible controls with clear focus states.
+- Supports wrapping around when navigating pages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 📌 **Sticky header on mobile**
 
-## Deploy on Vercel
+- Table header stays visible while scrolling vertically.
+- Works alongside horizontal and vertical overflow axis.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 📱 **Responsive table**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Horizontal overflow for small screens.
+- Minimum width prevents columns from being squished.
+- Vertical overflow with sticky header for large datasets.
+
+### 🎨 **Design fidelity**
+
+- Styling inspired by the provided screenshots.
+- Dropdown menu position differs slightly to support sticky header + overflow
+  reliably.
+- Lucide icon pack used to match design references.
+
+---
+
+## 🛠️ Libraries & Frameworks
+
+- **React + TypeScript** – core implementation.
+- **Tailwind CSS** – chosen for rapid prototyping, utility-first styling, and
+  responsive helpers.
+- **Express.js** – reused the provided implementation to serve API data.
+- **npm workspaces (monorepo)** – run the whole project with a single command.
+- **Vitest** – lightweight test runner for utility functions.
+- **Lucide Icons** – for consistent and modern iconography.
+
+---
+
+## ✅ Tests
+
+The only tests added are for utility functions:
+
+- `classNames` helper
+- `percent` formatting helper
+
+These small but essential utilities are covered to ensure correctness.
+
+---
+
+## 🚀 Running the Project
+
+1. **Clone the repo**
+   ```bash
+   git clone <repo-url>
+   cd <repo-name>
+   ```
+2. **Install dependencies**
+   ```bash
+   npm i
+   ```
+3. **Start the app** (from the monorepo root)
+   ```bash
+   npm run dev # runs both server / client apps
+   ```
+4. **Run test**
+   ```bash
+   npm run test
+   ```
