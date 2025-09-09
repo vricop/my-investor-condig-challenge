@@ -7,7 +7,7 @@ export type GetFundsParams = {
 };
 
 export type GetFundsResponse = {
-  pagaination: {
+  pagination: {
     page: number;
     limit: number;
     totalFunds: number;
