@@ -6,22 +6,7 @@ import { useState } from "react";
 import { Fund } from "../../../server/server/data/funds";
 import { classNames } from "@/utils/classNames";
 import { Column, SortState } from "../../types";
-
-type SortType = "string" | "number" | "date";
-
-type SortState = {
-  id: string;
-  dir: SortDir;
-} | null;
-
-type Column<T> = {
-  id: string;
-  header: React.ReactNode;
-  description?: string;
-  value?: (row: T) => string | number;
-  type?: SortType;
-  accessor?: (row: T) => React.ReactNode;
-};
+import { sorter } from "@/utils/sorter";
 
 const columns: Column<Fund>[] = [
   {
@@ -30,7 +15,7 @@ const columns: Column<Fund>[] = [
     description: "ISIN",
     type: "string",
     accessor: (row) => row.name,
-    value: (row) => row.value,
+    value: (row) => row.name,
   },
   {
     id: "symbol",
@@ -63,28 +48,28 @@ const columns: Column<Fund>[] = [
   {
     id: "performance-ytd",
     header: new Date().getFullYear().toString(),
-    type: "date",
+    type: "number",
     accessor: (row) => percent(row.profitability.YTD),
     value: (row) => row.profitability.YTD,
   },
   {
     id: "performance-1-y",
     header: "1A",
-    type: "date",
+    type: "number",
     accessor: (row) => percent(row.profitability.oneYear),
     value: (row) => row.profitability.oneYear,
   },
   {
     id: "performance-3-y",
     header: "3A",
-    type: "date",
+    type: "number",
     accessor: (row) => percent(row.profitability.threeYears),
     value: (row) => row.profitability.threeYears,
   },
   {
     id: "performance-5-y",
     header: "5A",
-    type: "date",
+    type: "number",
     accessor: (row) => percent(row.profitability.fiveYears),
     value: (row) => row.profitability.fiveYears,
   },
@@ -104,6 +89,8 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
     }
     setSort(null);
   }
+
+  const rows = sorter(data, sort, columns);
 
   return (
     <Table>
@@ -133,7 +120,7 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
       </Table.Header>
 
       <Table.Body>
-        {data.map((row) => (
+        {rows.map((row) => (
           <Table.Row key={row.id}>
             {columns.map((column) => (
               <Table.Cell
