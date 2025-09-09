@@ -14,7 +14,10 @@ export type TableProps = React.ComponentPropsWithoutRef<"table">;
 export function Table({ children, className, ...props }: TableProps) {
   return (
     <table
-      className={classNames("max-h-24 overflow-auto text-sm", className)}
+      className={classNames(
+        "max-h-24 overflow-auto text-sm tabular-nums",
+        className,
+      )}
       {...props}
     >
       {children}
