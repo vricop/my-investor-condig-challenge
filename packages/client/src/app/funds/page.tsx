@@ -15,14 +15,12 @@ type HomeParams = {
 export default async function Home({ searchParams }: HomeParams) {
   const filters = await searchParams;
   const funds = await getFunds(filters);
+  const { page, limit, totalPages, ...rest } = funds.pagination;
 
   return (
     <Container>
       <FundsTable data={funds.data} />
-      <Pagination
-        totalPages={funds.pagination.totalPages}
-        page={funds.pagination.page}
-      />
+      <Pagination page={page} limit={limit} totalPages={totalPages} {...rest} />
     </Container>
   );
 }
