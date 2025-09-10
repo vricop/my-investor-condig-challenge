@@ -1,5 +1,5 @@
 "use client";
-import { GetFundsResponse } from "@/lib/api/funds";
+import { GetFundsResponse } from "@/api/funds";
 import { percent } from "@/utils/percent";
 import { Table } from "./Table/Table";
 import { useState } from "react";
