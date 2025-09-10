@@ -62,12 +62,37 @@ implementation, with sorting, pagination, and keyboard-friendly dropdown menus.
 
 ## ✅ Tests
 
-The only tests added are for utility functions:
+Only a small subset tests for utility functions were added:
 
 - `classNames` helper
 - `percent` formatting helper
 
-These small but essential utilities are covered to ensure correctness.
+---
+
+## ⏳ What Couldn't Be Finished
+
+Due to limited free time, I wasn't able to implement some additional features
+such as:
+
+- Detailed view for individual funds
+- Buy, sell, or transfer actions for a fund
+
+However, I made sure to put a strong emphasis on **attention to detail** in
+everything I did implement — accessibility, responsive behavior, and design
+fidelity were carefully considered.
+
+---
+
+## 🛠 Areas of Improvement
+
+- The **dropdown menu** isn't perfect because it's implemented as a dialog
+  inside a table that overflows.
+- Currently, the dropdown menu has no `Esc` key or click-outside-to-close
+  support, since it's a **non-modal version of a modal**.
+- With more time, this could be refined into a fully accessible, robust dropdown
+  pattern.
+- Add tests to cover **all utility functions**, not just `classNames` and
+  `percent`.
 
 ---
 
