@@ -8,7 +8,8 @@
     "start:client": "npm start -w client",
     "dev": "concurrently -n SERVER,CLIENT -c green,blue \"npm run start -w server\" \"npm run dev -w client\"",
     "build": "npm run build -w client",
-    "lint": "npm  run lint -w client"
+    "lint": "npm run lint -w client",
+    "test": "npm run test -w client"
   },
   "workspaces": [
     "packages/server",
