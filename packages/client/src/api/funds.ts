@@ -1,4 +1,5 @@
-import { type Fund } from "../../../../server/server/data/funds";
+import { Fund } from "../../../server/server/data/funds";
+
 const API_URL = "http://localhost:3000";
 
 export type GetFundsParams = {

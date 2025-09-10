@@ -16,6 +16,7 @@ implementation, with sorting, pagination, and keyboard-friendly dropdown menus.
 - Icons and colors update to reflect the current state.
 - Large clickable area (not just the icon) improves usability.
 - Focus indicators ensure keyboard accessibility.
+- Compound components pattern for cleaner and easy to follow component APIs
 
 ### 🎛 **Dropdown menus**
 

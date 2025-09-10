@@ -1,7 +1,7 @@
 import { Container } from "@/components/Container";
 import { FundsTable } from "@/components/FundsTable";
 import { Pagination } from "@/components/Pagination";
-import { getFunds } from "@/lib/api/funds";
+import { getFunds } from "@/api/funds";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
