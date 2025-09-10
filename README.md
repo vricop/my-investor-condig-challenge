@@ -88,7 +88,7 @@ fidelity were carefully considered.
 - The **dropdown menu** isn't perfect because it's implemented as a dialog
   inside a table that overflows.
 - Currently, the dropdown menu has no `Esc` key or click-outside-to-close
-  support, since it's a **non-modal version of a modal**.
+  support, since it's a **non-modal version of a dialog**.
 - With more time, this could be refined into a fully accessible, robust dropdown
   pattern.
 - Add tests to cover **all utility functions**, not just `classNames` and
