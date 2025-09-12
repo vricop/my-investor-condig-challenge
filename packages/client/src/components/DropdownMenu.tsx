@@ -8,16 +8,40 @@ export function DropdownMenu({ ...props }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
+    if (!dialogRef.current) return;
+
     const dialog = dialogRef.current;
-
-    if (!dialog) return;
-
-    if (isOpen) {
-      dialog.show();
+    if (!isOpen) {
+      dialog.close();
       return;
     }
 
-    dialog.close();
+    dialog.show();
+
+    const ac = new AbortController();
+
+    document.addEventListener(
+      "pointerdown",
+      (e) => {
+        const path = e.composedPath();
+        if (path.includes(dialog)) return;
+        dialog.close();
+        setIsOpen(false);
+      },
+      { capture: true, signal: ac.signal },
+    );
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+        if (e.key !== "Escape" || !dialog.open) return;
+        dialog.close();
+        setIsOpen(false);
+      },
+      { signal: ac.signal },
+    );
+
+    return () => ac.abort();
   }, [isOpen]);
 
   return (
