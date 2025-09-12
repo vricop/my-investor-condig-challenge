@@ -3,7 +3,7 @@ import { classNames } from "@/utils/classNames";
 import { TableAlignProps } from "./types";
 import { alignment } from "./utils/alignment";
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react";
-import type { SortDir } from "../types";
+import { SortDir } from "../../../types";
 
 type SortVisualProps = {
   sortable?: boolean;

@@ -46,7 +46,8 @@ export function DropdownMenu({ ...props }) {
       >
         <ul
           role="presentation"
-          className="bg-white text-blue-700 font-bold text-lg [&>*+*]:border-t [&>*+*]:border-slate-200"
+          className="bg-white text-blue-700 font-bold text-lg [&>*+*]:border-t
+          [&>*+*]:border-slate-200"
         >
           <li role="item">
             <button
