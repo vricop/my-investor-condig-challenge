@@ -1,7 +1,7 @@
 "use client";
 import { Eye, LogOut } from "lucide-react";
 import { useState } from "react";
-import type { GetFundsResponse } from "@/api/funds";
+import { buyFund, type GetFundsResponse } from "@/api/funds";
 import { classNames } from "@/utils/classNames";
 import { percent } from "@/utils/percent";
 import { sorter } from "@/utils/sorter";
@@ -9,6 +9,11 @@ import type { Fund } from "../../../server/server/data/funds";
 import type { Column, SortState } from "../../types";
 import { DropdownMenu } from "./DropdownMenu/DropdownMenu";
 import { Table } from "./Table/Table";
+
+function buyFundAction(id: string) {
+  return (_: React.MouseEvent<HTMLButtonElement>) =>
+    buyFund(id, { quantity: 1 });
+}
 
 const columns: Column<Fund>[] = [
   {
@@ -138,7 +143,12 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
             <Table.Cell />
             <Table.Cell>
               <DropdownMenu>
-                <DropdownMenu.Item icon={<LogOut />}>Comprar</DropdownMenu.Item>
+                <DropdownMenu.Item
+                  onClick={buyFundAction(row.id)}
+                  icon={<LogOut />}
+                >
+                  Comprar
+                </DropdownMenu.Item>
                 <DropdownMenu.Item icon={<Eye />}>
                   Ver detalle
                 </DropdownMenu.Item>

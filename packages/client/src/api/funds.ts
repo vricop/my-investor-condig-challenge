@@ -1,5 +1,5 @@
 import { fetcher } from "@/utils/fetcher";
-import { Fund } from "../../../server/server/data/funds";
+import type { Fund } from "../../../server/server/data/funds";
 
 const API_URL = "http://localhost:3000";
 
@@ -18,15 +18,18 @@ export type GetFundsResponse = {
   data: Fund[];
 };
 
-export async function getFunds(
-  { page = 1, limit = 8 }: GetFundsParams = {}
-): Promise<GetFundsResponse> {
+export async function getFunds({
+  page = 1,
+  limit = 8,
+}: GetFundsParams = {}): Promise<GetFundsResponse> {
   const searchParams = new URLSearchParams({
     page: String(page),
     limit: String(limit),
   });
 
-  return fetcher<GetFundsResponse>(`${API_URL}/funds?${searchParams.toString()}`);
+  return fetcher<GetFundsResponse>(
+    `${API_URL}/funds?${searchParams.toString()}`,
+  );
 }
 
 export type GetFundResponse = {
@@ -51,15 +54,18 @@ export type BuyFundResponse = {
 
 export async function buyFund(
   id: string,
-  { quantity }: BuyFundBody
+  { quantity }: BuyFundBody,
 ): Promise<BuyFundResponse> {
   if (!(quantity > 0)) {
     throw new Error("Quantity must be greater than 0");
   }
 
-  return fetcher<BuyFundResponse>(`${API_URL}/funds/${encodeURIComponent(id)}/buy`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ quantity }),
-  });
+  return fetcher<BuyFundResponse>(
+    `${API_URL}/funds/${encodeURIComponent(id)}/buy`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ quantity }),
+    },
+  );
 }
