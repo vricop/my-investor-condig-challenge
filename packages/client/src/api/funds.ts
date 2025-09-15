@@ -1,3 +1,4 @@
+import { fetcher } from "@/utils/fetcher";
 import { Fund } from "../../../server/server/data/funds";
 
 const API_URL = "http://localhost:3000";
@@ -17,20 +18,13 @@ export type GetFundsResponse = {
   data: Fund[];
 };
 
-export async function getFunds({
-  page = 1,
-  limit = 8,
-}: GetFundsParams = {}): Promise<GetFundsResponse> {
+export async function getFunds(
+  { page = 1, limit = 8 }: GetFundsParams = {}
+): Promise<GetFundsResponse> {
   const searchParams = new URLSearchParams({
     page: String(page),
     limit: String(limit),
   });
 
-  const data = await fetch(`${API_URL}/funds?${searchParams.toString()}`);
-
-  if (!data.ok) {
-    throw new Error(`Failes to fetch funds: ${data.status} ${data.statusText}`);
-  }
-
-  return await data.json();
+  return fetcher<GetFundsResponse>(`${API_URL}/funds?${searchParams.toString()}`);
 }
