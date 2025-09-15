@@ -1,9 +1,10 @@
 import { EllipsisVertical, Eye, LogOut } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { DropdownMenuItem } from "./DropdownMenuItem";
 
 export type DropdownMenuProps = React.ComponentPropsWithoutRef<"button">;
 
-export function DropdownMenu({ ...props }) {
+export function DropdownMenu({ children, ...props }: DropdownMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -73,28 +74,11 @@ export function DropdownMenu({ ...props }) {
           className="bg-white text-blue-700 font-bold text-lg [&>*+*]:border-t
           [&>*+*]:border-slate-200"
         >
-          <li role="item">
-            <button
-              type="button"
-              className="w-full cursor-pointer grid justify-start grid-flow-col
-              gap-4 leading-[.85lh] p-6 outline-none focus-visible:bg-slate-50"
-            >
-              <LogOut />
-              Comprar
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              className="w-full cursor-pointer grid justify-start grid-flow-col
-              gap-4 leading-[.85lh] p-6 outline-none focus-visible:bg-slate-50"
-            >
-              <Eye />
-              Ver detalle
-            </button>
-          </li>
+          {children}
         </ul>
       </dialog>
     </div>
   );
 }
+
+DropdownMenu.Item = DropdownMenuItem

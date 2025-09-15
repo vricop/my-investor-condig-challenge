@@ -1,13 +1,14 @@
 "use client";
-import { GetFundsResponse } from "@/api/funds";
-import { percent } from "@/utils/percent";
-import { Table } from "./Table/Table";
+import { Eye, LogOut } from "lucide-react";
 import { useState } from "react";
-import { Fund } from "../../../server/server/data/funds";
+import type { GetFundsResponse } from "@/api/funds";
 import { classNames } from "@/utils/classNames";
-import { Column, SortState } from "../../types";
+import { percent } from "@/utils/percent";
 import { sorter } from "@/utils/sorter";
-import { DropdownMenu } from "./DropdownMenu";
+import type { Fund } from "../../../server/server/data/funds";
+import type { Column, SortState } from "../../types";
+import { DropdownMenu } from "./DropdownMenu/DropdownMenu";
+import { Table } from "./Table/Table";
 
 const columns: Column<Fund>[] = [
   {
@@ -136,7 +137,12 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
             ))}
             <Table.Cell />
             <Table.Cell>
-              <DropdownMenu />
+              <DropdownMenu>
+                <DropdownMenu.Item icon={<LogOut />}>Comprar</DropdownMenu.Item>
+                <DropdownMenu.Item icon={<Eye />}>
+                  Ver detalle
+                </DropdownMenu.Item>
+              </DropdownMenu>
             </Table.Cell>
           </Table.Row>
         ))}
