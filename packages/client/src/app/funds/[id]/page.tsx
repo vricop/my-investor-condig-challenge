@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 
 type PageParams = {
   params: Promise<{ id: string }>
-  searchParams?: Promise<Record<string, string | string[] | undefined>>
 }
 
 export default async function FundDetailsPage({ params }: PageParams) {

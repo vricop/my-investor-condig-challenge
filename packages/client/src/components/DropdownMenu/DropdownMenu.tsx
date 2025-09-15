@@ -1,4 +1,4 @@
-import { EllipsisVertical, Eye, LogOut } from "lucide-react"
+import { EllipsisVertical } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { DropdownMenuItem } from "./DropdownMenuItem"
 

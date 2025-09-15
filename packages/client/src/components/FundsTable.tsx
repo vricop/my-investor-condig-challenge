@@ -145,15 +145,19 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
             <Table.Cell>
               <DropdownMenu>
                 <DropdownMenu.Item
-                  onClick={buyFundAction(row.id)}
                   icon={<LogOut />}
+                  onClick={buyFundAction(row.id)}
                 >
                   Comprar
                 </DropdownMenu.Item>
-                <Link href={`/funds/${row.id}`}>Ver detalle</Link>
-                {/* <DropdownMenu.Item icon={<Eye />}> */}
-                {/*   Ver detalle */}
-                {/* </DropdownMenu.Item> */}
+                <DropdownMenu.Item
+                  icon={<Eye />}
+                  as={Link}
+                  onClick={() => null}
+                  href={`/funds/${row.id}`}
+                >
+                  Ver detalle
+                </DropdownMenu.Item>
               </DropdownMenu>
             </Table.Cell>
           </Table.Row>
