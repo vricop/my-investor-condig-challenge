@@ -9,6 +9,7 @@ import type { Fund } from "../../../server/server/data/funds"
 import type { Column, SortState } from "../../types"
 import { DropdownMenu } from "./DropdownMenu/DropdownMenu"
 import { Table } from "./Table/Table"
+import Link from "next/link"
 
 function buyFundAction(id: string) {
   return (_: React.MouseEvent<HTMLButtonElement>) =>
@@ -149,9 +150,10 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
                 >
                   Comprar
                 </DropdownMenu.Item>
-                <DropdownMenu.Item icon={<Eye />}>
-                  Ver detalle
-                </DropdownMenu.Item>
+                <Link href={`/funds/${row.id}`}>Ver detalle</Link>
+                {/* <DropdownMenu.Item icon={<Eye />}> */}
+                {/*   Ver detalle */}
+                {/* </DropdownMenu.Item> */}
               </DropdownMenu>
             </Table.Cell>
           </Table.Row>
