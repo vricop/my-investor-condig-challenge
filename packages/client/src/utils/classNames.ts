@@ -8,8 +8,8 @@
 export function classNames(...args: any[]) {
   return (
     args
-      .filter((item) => typeof item === "string")
+      .filter(item => typeof item === "string")
       .join(" ")
       .trim() || undefined
-  );
+  )
 }

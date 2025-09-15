@@ -1,6 +1,6 @@
 export type DropdownMenuItemProps = {
-  icon?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<"button">;
+  icon?: React.ReactNode
+} & React.ComponentPropsWithoutRef<"button">
 
 export function DropdownMenuItem({
   children,
@@ -19,5 +19,5 @@ export function DropdownMenuItem({
         {children}
       </button>
     </li>
-  );
+  )
 }

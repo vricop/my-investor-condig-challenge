@@ -1,30 +1,30 @@
-"use client";
-import { classNames } from "@/utils/classNames";
-import { TableAlignProps } from "./types";
-import { alignment } from "./utils/alignment";
-import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react";
-import { SortDir } from "../../../types";
+"use client"
+import { classNames } from "@/utils/classNames"
+import { TableAlignProps } from "./types"
+import { alignment } from "./utils/alignment"
+import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react"
+import { SortDir } from "../../../types"
 
 type SortVisualProps = {
-  sortable?: boolean;
-  sortActive?: boolean;
-  sortDir?: SortDir;
-};
+  sortable?: boolean
+  sortActive?: boolean
+  sortDir?: SortDir
+}
 
 export type TableHeadingProps = {
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  description?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  description?: string
 } & SortVisualProps &
   Omit<React.ComponentPropsWithoutRef<"th">, "align" | "onClick"> &
-  TableAlignProps;
+  TableAlignProps
 
 function SortIcon({ active, dir }: { active: boolean; dir?: SortDir }) {
-  if (!active) return <ArrowDownUp size="1.25em" className="text-slate-400" />;
+  if (!active) return <ArrowDownUp size="1.25em" className="text-slate-400" />
   return dir === "ascending" ? (
     <ArrowUp size="1.25em" className="text-inherit" />
   ) : (
     <ArrowDown size="1.25em" className="text-inherit" />
-  );
+  )
 }
 
 export function TableHeading({
@@ -38,7 +38,7 @@ export function TableHeading({
   description,
   ...props
 }: TableHeadingProps) {
-  const ariaSort = sortable ? (sortActive ? sortDir : "none") : undefined;
+  const ariaSort = sortable ? (sortActive ? sortDir : "none") : undefined
 
   return (
     <th
@@ -53,8 +53,8 @@ export function TableHeading({
             className="cursor-pointer grid grid-flow-col gap-x-2 justify-start
             items-center after:absolute after:inset-0 ring-offset-4
             focus-visible:outline-none focus-visible:ring-2 ring-blue-500"
-            onClick={(e) => {
-              sortable && onClick?.(e);
+            onClick={e => {
+              sortable && onClick?.(e)
             }}
             aria-pressed={!!sortActive}
           >
@@ -70,5 +70,5 @@ export function TableHeading({
         </>
       )}
     </th>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 export default {
   async redirects() {
@@ -8,6 +8,6 @@ export default {
         destination: "/funds",
         permanent: true,
       },
-    ];
+    ]
   },
-} satisfies NextConfig;
+} satisfies NextConfig

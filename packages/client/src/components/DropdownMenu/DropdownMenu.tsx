@@ -1,49 +1,49 @@
-import { EllipsisVertical, Eye, LogOut } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { DropdownMenuItem } from "./DropdownMenuItem";
+import { EllipsisVertical, Eye, LogOut } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import { DropdownMenuItem } from "./DropdownMenuItem"
 
-export type DropdownMenuProps = React.ComponentPropsWithoutRef<"button">;
+export type DropdownMenuProps = React.ComponentPropsWithoutRef<"button">
 
 export function DropdownMenu({ children, ...props }: DropdownMenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [isOpen, setIsOpen] = useState(false)
+  const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
-    if (!dialogRef.current) return;
+    if (!dialogRef.current) return
 
-    const dialog = dialogRef.current;
+    const dialog = dialogRef.current
     if (!isOpen) {
-      dialog.close();
-      return;
+      dialog.close()
+      return
     }
 
-    dialog.show();
+    dialog.show()
 
-    const ac = new AbortController();
+    const ac = new AbortController()
 
     document.addEventListener(
       "pointerdown",
-      (e) => {
-        const path = e.composedPath();
-        if (path.includes(dialog)) return;
-        dialog.close();
-        setIsOpen(false);
+      e => {
+        const path = e.composedPath()
+        if (path.includes(dialog)) return
+        dialog.close()
+        setIsOpen(false)
       },
       { capture: true, signal: ac.signal },
-    );
+    )
 
     document.addEventListener(
       "keydown",
-      (e) => {
-        if (e.key !== "Escape" || !dialog.open) return;
-        dialog.close();
-        setIsOpen(false);
+      e => {
+        if (e.key !== "Escape" || !dialog.open) return
+        dialog.close()
+        setIsOpen(false)
       },
       { signal: ac.signal },
-    );
+    )
 
-    return () => ac.abort();
-  }, [isOpen]);
+    return () => ac.abort()
+  }, [isOpen])
 
   return (
     <div className="relative">
@@ -53,14 +53,14 @@ export function DropdownMenu({ children, ...props }: DropdownMenuProps) {
         className="rounded-[1lh] cursor-pointer w-6 aspect-square grid
       place-content-center outline-none ring-offset-4
       focus-visible:ring-2 ring-blue-500"
-        onClick={() => setIsOpen((state) => !state)}
+        onClick={() => setIsOpen(state => !state)}
       >
         <EllipsisVertical className="text-blue-700" />
       </button>
       <dialog
-        onClick={(e) => {
+        onClick={e => {
           if (e.target === dialogRef.current) {
-            setIsOpen(false);
+            setIsOpen(false)
           }
         }}
         ref={dialogRef}
@@ -78,7 +78,7 @@ export function DropdownMenu({ children, ...props }: DropdownMenuProps) {
         </ul>
       </dialog>
     </div>
-  );
+  )
 }
 
 DropdownMenu.Item = DropdownMenuItem

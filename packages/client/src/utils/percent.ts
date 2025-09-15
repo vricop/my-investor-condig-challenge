@@ -1,7 +1,7 @@
 type PercentParams = {
-  fractionDigits?: number;
-  locale?: string;
-};
+  fractionDigits?: number
+  locale?: string
+}
 
 export function percent(
   value: number = 0,
@@ -11,5 +11,5 @@ export function percent(
     style: "percent",
     minimumFractionDigits: fractionDigits,
     maximumFractionDigits: fractionDigits,
-  }).format(value);
+  }).format(value)
 }

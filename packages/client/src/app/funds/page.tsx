@@ -1,21 +1,21 @@
-import { Container } from "@/components/Container";
-import { FundsTable } from "@/components/FundsTable";
-import { Pagination } from "@/components/Pagination";
-import { getFunds } from "@/api/funds";
-import { Metadata } from "next";
+import { Container } from "@/components/Container"
+import { FundsTable } from "@/components/FundsTable"
+import { Pagination } from "@/components/Pagination"
+import { getFunds } from "@/api/funds"
+import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "MyInvestor - funds",
-};
+}
 
 type HomeParams = {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-};
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
 
 export default async function Home({ searchParams }: HomeParams) {
-  const filters = await searchParams;
-  const funds = await getFunds(filters);
-  const { page, limit, totalPages, ...query } = funds.pagination;
+  const filters = await searchParams
+  const funds = await getFunds(filters)
+  const { page, limit, totalPages, ...query } = funds.pagination
 
   return (
     <Container>
@@ -27,5 +27,5 @@ export default async function Home({ searchParams }: HomeParams) {
         {...query}
       />
     </Container>
-  );
+  )
 }

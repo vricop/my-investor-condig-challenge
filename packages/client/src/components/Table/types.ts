@@ -1,3 +1,3 @@
 export type TableAlignProps = {
-  align?: "start" | "center" | "end";
-};
+  align?: "start" | "center" | "end"
+}

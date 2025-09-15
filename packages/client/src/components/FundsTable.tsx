@@ -1,18 +1,18 @@
-"use client";
-import { Eye, LogOut } from "lucide-react";
-import { useState } from "react";
-import { buyFund, type GetFundsResponse } from "@/api/funds";
-import { classNames } from "@/utils/classNames";
-import { percent } from "@/utils/percent";
-import { sorter } from "@/utils/sorter";
-import type { Fund } from "../../../server/server/data/funds";
-import type { Column, SortState } from "../../types";
-import { DropdownMenu } from "./DropdownMenu/DropdownMenu";
-import { Table } from "./Table/Table";
+"use client"
+import { Eye, LogOut } from "lucide-react"
+import { useState } from "react"
+import { buyFund, type GetFundsResponse } from "@/api/funds"
+import { classNames } from "@/utils/classNames"
+import { percent } from "@/utils/percent"
+import { sorter } from "@/utils/sorter"
+import type { Fund } from "../../../server/server/data/funds"
+import type { Column, SortState } from "../../types"
+import { DropdownMenu } from "./DropdownMenu/DropdownMenu"
+import { Table } from "./Table/Table"
 
 function buyFundAction(id: string) {
   return (_: React.MouseEvent<HTMLButtonElement>) =>
-    buyFund(id, { quantity: 1 });
+    buyFund(id, { quantity: 1 })
 }
 
 const columns: Column<Fund>[] = [
@@ -21,83 +21,83 @@ const columns: Column<Fund>[] = [
     header: "Nombre",
     description: "ISIN",
     type: "string",
-    accessor: (row) => row.name,
-    value: (row) => row.name,
+    accessor: row => row.name,
+    value: row => row.name,
   },
   {
     id: "symbol",
     header: "Símbolo",
     type: "string",
-    accessor: (row) => row.symbol,
-    value: (row) => row.symbol,
+    accessor: row => row.symbol,
+    value: row => row.symbol,
   },
   {
     id: "currency",
     header: "Div",
     type: "string",
-    accessor: (row) => row.currency,
-    value: (row) => row.currency,
+    accessor: row => row.currency,
+    value: row => row.currency,
   },
   {
     id: "category",
     header: "Categoría",
     type: "string",
-    accessor: (row) => row.category,
-    value: (row) => row.category,
+    accessor: row => row.category,
+    value: row => row.category,
   },
   {
     id: "value",
     header: "Valor liquidativo",
     type: "number",
-    accessor: (row) => row.value,
-    value: (row) => row.value,
+    accessor: row => row.value,
+    value: row => row.value,
   },
   {
     id: "performance-ytd",
     header: new Date().getFullYear().toString(),
     type: "number",
-    accessor: (row) => percent(row.profitability.YTD),
-    value: (row) => row.profitability.YTD,
+    accessor: row => percent(row.profitability.YTD),
+    value: row => row.profitability.YTD,
   },
   {
     id: "performance-1-y",
     header: "1A",
     type: "number",
-    accessor: (row) => percent(row.profitability.oneYear),
-    value: (row) => row.profitability.oneYear,
+    accessor: row => percent(row.profitability.oneYear),
+    value: row => row.profitability.oneYear,
   },
   {
     id: "performance-3-y",
     header: "3A",
     type: "number",
-    accessor: (row) => percent(row.profitability.threeYears),
-    value: (row) => row.profitability.threeYears,
+    accessor: row => percent(row.profitability.threeYears),
+    value: row => row.profitability.threeYears,
   },
   {
     id: "performance-5-y",
     header: "5A",
     type: "number",
-    accessor: (row) => percent(row.profitability.fiveYears),
-    value: (row) => row.profitability.fiveYears,
+    accessor: row => percent(row.profitability.fiveYears),
+    value: row => row.profitability.fiveYears,
   },
-];
+]
 
 export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
-  const [sort, setSort] = useState<SortState>(null);
+  const [sort, setSort] = useState<SortState>(null)
 
   function handleSorting(id: string) {
     if (sort?.id !== id) {
-      setSort({ id, dir: "ascending" });
-      return;
+      setSort({ id, dir: "ascending" })
+      return
     }
     if (sort.dir === "ascending") {
-      setSort({ id, dir: "descending" });
-      return;
+      setSort({ id, dir: "descending" })
+      return
     }
-    setSort(null);
+    setSort(null)
   }
 
-  const rows = sorter(data, sort, columns);
+  const rows = sorter(data, sort, columns)
 
   return (
     <Table>
@@ -110,7 +110,7 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
         </Table.Row>
 
         <Table.Row>
-          {columns.map((column) => (
+          {columns.map(column => (
             <Table.Heading
               key={column.id}
               sortable={true}
@@ -127,9 +127,9 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
       </Table.Header>
 
       <Table.Body>
-        {rows.map((row) => (
+        {rows.map(row => (
           <Table.Row key={row.id}>
-            {columns.map((column) => (
+            {columns.map(column => (
               <Table.Cell
                 key={column.id}
                 className={classNames(
@@ -158,5 +158,5 @@ export function FundsTable({ data }: Pick<GetFundsResponse, "data">) {
         ))}
       </Table.Body>
     </Table>
-  );
+  )
 }

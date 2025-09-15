@@ -1,9 +1,9 @@
-import { classNames } from "@/utils/classNames";
-import { TableAlignProps } from "./types";
-import { alignment } from "./utils/alignment";
+import { classNames } from "@/utils/classNames"
+import { TableAlignProps } from "./types"
+import { alignment } from "./utils/alignment"
 
 export type TableRowProps = React.ComponentPropsWithoutRef<"tr"> &
-  TableAlignProps;
+  TableAlignProps
 
 export function TableRow({
   children,
@@ -22,5 +22,5 @@ export function TableRow({
     >
       {children}
     </tr>
-  );
+  )
 }

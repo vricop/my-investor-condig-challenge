@@ -1,12 +1,12 @@
-import { classNames } from "@/utils/classNames";
-import { TableAlignProps } from "./types";
-import { alignment } from "./utils/alignment";
+import { classNames } from "@/utils/classNames"
+import { TableAlignProps } from "./types"
+import { alignment } from "./utils/alignment"
 
 export type TableHeaderProps = {
   /** Make header sticky to improve redability. Default: `true`. */
-  isSticky?: boolean;
+  isSticky?: boolean
 } & React.ComponentPropsWithoutRef<"thead"> &
-  TableAlignProps;
+  TableAlignProps
 
 export function TableHeader({
   children,
@@ -28,5 +28,5 @@ export function TableHeader({
     >
       {children}
     </thead>
-  );
+  )
 }
